@@ -55,7 +55,10 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production.
-  config.cache_store = [ :dalli_store, 'fod-dev-memcached.q8x6u8.cfg.usw2.cache.amazonaws.com:11211', namespace: 'prototype', compress: true, expires_in: 10.minutes ]
+  cfg_endpoint    = "fod-dev-memcached.q8x6u8.cfg.usw2.cache.amazonaws.com:11211"
+  elasticache = Dalli::ElastiCache.new(cfg_endpoint)
+
+  config.cache_store = [ :dalli_store, elasticache.servers, namespace: 'elasticache-proto', compress: true, expires_in: 30.minutes ]
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
