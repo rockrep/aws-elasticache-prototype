@@ -27,6 +27,8 @@ gem 'dalli'
 #gem 'dalli-ext-spymemcached-debug', '1.0.5'
 gem 'dalli-elasticache'
 
+gem 'slim'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

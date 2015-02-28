@@ -1,7 +1,8 @@
 class WelcomeController < ApplicationController
 
   def index
-    render text: 'Welcome to the Elasticache Memcached Auto-Discovery Prototype'
+    @servers = Elasticache.servers
+    @cache_store_servers = Rails.cache.instance_variable_get(:@data).instance_variable_get(:@servers)
   end
 end
 
