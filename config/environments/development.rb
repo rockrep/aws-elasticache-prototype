@@ -38,5 +38,11 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.cache_store = [ :dalli_store, '127.0.0.1:11211', namespace: 'prototype', compress: true, expires_in: 10.minutes ]
+  cfg_endpoint    = "127.0.0.1:11211"
+  Struct.new("ElasticacheMock", :servers)
+  self.elasticache = Struct::ElasticacheMock.new([cfg_endpoint].flatten)
+  config.cache_store = [ :dalli_store, elasticache.servers, namespace: 'prototype', compress: true, expires_in: 10.minutes ]
 end
+
+
+

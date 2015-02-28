@@ -1,13 +1,12 @@
 h1 Elasticache Memcached Auto-Discovery Prototype
 
 h2 Servers
-  ul
-    - @servers.each do |server|
-      li server
+ul
+  - for server in @servers do
+    li =server
 
 h2 Cache Store Servers
-  ul
-    -@cache_store_servers.each do |server|
-      li server
-
+ul
+  - for server in @cache_store_servers do
+    li =server
 
