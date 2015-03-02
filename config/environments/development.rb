@@ -41,7 +41,7 @@ Rails.application.configure do
   cfg_endpoint    = "127.0.0.1:11211"
   Struct.new("ElasticacheMock", :servers)
   self.elasticache = Struct::ElasticacheMock.new([cfg_endpoint].flatten)
-  config.cache_store = [ :dalli_store, elasticache.servers, namespace: 'prototype', compress: true, expires_in: 10.minutes ]
+  config.cache_store = [ :dalli_store, elasticache.servers, namespace: 'prototype', compress: true, expires_in: 1.hour ]
 end
 
 

@@ -10,3 +10,27 @@ ul
   - for server in @cache_store_servers do
     li =server
 
+h2 Cache Keys
+= @cache_count
+
+p
+
+= link_to 'Clear Cache', clear_cache_index_path, method: :delete
+
+p
+
+= form_tag cache_index_path
+  = submit_tag 'Write 1000 keys'
+
+p
+
+= link_to 'Check Cache', cache_index_path
+
+- if @misses.present?
+  h2 Cache Misses
+  = @misses
+- if @hits.present?
+  h2 Cache Hits
+  = @hits
+
+
