@@ -43,7 +43,7 @@ class CachesController < ApplicationController
   end
 
   def refresh_store
-    Rails.application.config.cache_store = [:dalli_store, Rails.application.elasticache.servers, {:namespace=>"prototype", :compress=>true, :expires_in=>3.hours}]
+    Rails.cache = ActiveSupport::Cache::DalliStore.new(Rails.application.elasticache.servers, {:namespace=>"prototype", :compress=>true, :expires_in=>3.hours})
     redirect_to cache_path
   end
 
