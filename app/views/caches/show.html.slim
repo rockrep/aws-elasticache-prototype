@@ -5,26 +5,30 @@ ul
   - for server in @servers do
     li =server
 
+= link_to 'Refresh Elasticache Client View of Cluster', refresh_cache_path, method: :put
+
 h2 Cache Store Servers
 ul
   - for server in @cache_store_servers do
     li =server
+
+= link_to 'Refresh Cache Store View of Cluster', refresh_cache_store_cache_path, method: :put
 
 h2 Cache Keys
 = @cache_count
 
 p
 
-= link_to 'Clear Cache', clear_cache_index_path, method: :delete
+= link_to 'Clear Cache', cache_path, method: :delete
 
 p
 
-= form_tag cache_index_path
+= form_tag cache_path
   = submit_tag 'Write 1000 keys'
 
 p
 
-= link_to 'Check Cache', cache_index_path
+= link_to 'Check Cache', check_cache_path
 
 - if @misses.present?
   h2 Cache Misses

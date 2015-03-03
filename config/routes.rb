@@ -3,10 +3,12 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'caches#show'
 
-  resources :cache do
-    delete :clear, on: :collection
+  resource :cache do
+    get :check
+    put :refresh
+    put :refresh_store, as: 'refresh_cache_store'
   end
 
   # Example of regular route:
