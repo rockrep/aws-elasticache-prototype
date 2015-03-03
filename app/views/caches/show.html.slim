@@ -12,7 +12,7 @@ ul
   - for server in @cache_store_servers do
     li =server
 
-= link_to 'Refresh Cache Store View of Cluster', refresh_cache_store_cache_path, method: :put
+= link_to 'Update Cache Store View of Cluster', refresh_cache_store_cache_path, method: :put
 
 h2 Cache Keys
 = @cache_count
@@ -37,4 +37,15 @@ p
   h2 Cache Hits
   = @hits
 
+h2 SQS Queues
+ul
+  - for queue in @queues do
+    li =queue
 
+h3 Messages
+ul
+  - for message in @messages.messages do
+    - json = JSON.parse(message.body)
+    li =json["Message"]
+
+= link_to 'Purge Queue', purge_sqs_queue_path, method: :delete

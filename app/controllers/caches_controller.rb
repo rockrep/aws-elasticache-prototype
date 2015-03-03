@@ -18,6 +18,7 @@ class CachesController < ApplicationController
       if Rails.cache.read("k-#{i}")
         hits += 1
       else
+        Rails.cache.write("k-#{i}", i)
         misses += 1
       end
     end if Cache.count > 0
@@ -55,6 +56,8 @@ class CachesController < ApplicationController
     @cache_count = Cache.count
     @misses = Rails.cache.read("misses")
     @hits = Rails.cache.read("hits")
+    @queues = SqsClient.instance.list_queues
+    @messages = SqsClient.instance.receive_messages
   end
 
 end

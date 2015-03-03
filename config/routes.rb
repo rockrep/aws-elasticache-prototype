@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     put :refresh_store, as: 'refresh_cache_store'
   end
 
+  resource :sqs_queue, only: [] do
+    delete :purge
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
