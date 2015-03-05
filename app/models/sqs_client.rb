@@ -24,7 +24,7 @@ class SqsClient
 
   def purge_queue
     @client.purge_queue(queue_url: list_queues.first)
-  rescue => exception
+  rescue Aws::SQS::Errors::PurgeQueueInProgress => exception
     Rails.logger.warn exception.message
   end
 
