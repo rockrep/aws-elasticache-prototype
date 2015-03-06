@@ -64,8 +64,12 @@ Rails.application.configure do
   self.redis_read_endpoints = ['fod-dev-redis-001.q8x6u8.0001.usw2.cache.amazonaws.com:6379',
                          'fod-dev-redis-002.q8x6u8.0001.usw2.cache.amazonaws.com:6379']
 
-  self.redis_write = Redis.new host: 'fod-dev-redis.q8x6u8.ng.0001.usw2.cache.amazonaws.com', port: '6379', db: 0, logger: Rails.logger
-  self.redis_read  = Redis.new host: self.redis_read_endpoints.first.split(':')[0], port: self.redis_read_endpoints.first.split(':')[1], db: 0, logger: Rails.logger
+  self.redis_write = Redis.new host: 'fod-dev-redis.q8x6u8.ng.0001.usw2.cache.amazonaws.com',
+    port: '6379', db: 0, logger: Rails.logger
+  self.redis_read  = Redis.new host: self.redis_read_endpoints.first.split(':')[0],
+    port: self.redis_read_endpoints.second.split(':')[1], db: 0, logger: Rails.logger
+  self.redis_read2  = Redis.new host: self.redis_read_endpoints.first.split(':')[0],
+    port: self.redis_read_endpoints.second.split(':')[1], db: 0, logger: Rails.logger
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'

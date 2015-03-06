@@ -22,8 +22,8 @@ class CachesController < ApplicationController
         misses += 1
       end
     end if Cache.count > 0
-    Rails.cache.write("misses", misses)
-    Rails.cache.write("hits", hits)
+    Cache.misses = misses
+    Cache.hits = hits
 
     redirect_to cache_path
   end
@@ -54,10 +54,10 @@ class CachesController < ApplicationController
     @servers = Rails.application.elasticache.servers || []
     @cache_store_servers = Rails.cache.instance_variable_get(:@data).instance_variable_get(:@servers)
     @cache_count = Cache.count
-    @misses = Rails.cache.read("misses")
-    @hits = Rails.cache.read("hits")
+    @misses = Cache.misses
+    @hits = Cache.hits
     @queues = SqsClient.instance.list_queues
-    @messages = SqsClient.instance.receive_messages
+    @messages = SqsClient.instance.receive_messages(SqsClient.instance.memcached_queue)
   end
 
 end

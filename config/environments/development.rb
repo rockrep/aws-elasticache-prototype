@@ -49,6 +49,7 @@ Rails.application.configure do
 
   self.redis_write = Redis.new host: 'localhost', port: '6381', db: 3, logger: Rails.logger
   self.redis_read  = Redis.new host: 'localhost', port: '6381', db: 3, logger: Rails.logger
+  self.redis_read2  = self.redis_read
 end
 
 
