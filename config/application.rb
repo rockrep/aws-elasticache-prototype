@@ -10,6 +10,9 @@ module AwsElasticachePrototype
   class Application < Rails::Application
 
     attr_accessor :elasticache
+    attr_accessor :redis_write
+    attr_accessor :redis_read
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

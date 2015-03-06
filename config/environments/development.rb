@@ -46,6 +46,9 @@ Rails.application.configure do
   self.elasticache = Struct::ElasticacheMock.new([cfg_endpoint].flatten)
   config.cache_store = [ :dalli_store, elasticache.servers,
                          namespace: 'prototype', compress: true, expires_in: 1.hour ]
+
+  self.redis_write = Redis.new host: 'localhost', port: '6381', db: 3, logger: Rails.logger
+  self.redis_read  = Redis.new host: 'localhost', port: '6381', db: 3, logger: Rails.logger
 end
 
 
