@@ -12,6 +12,7 @@ module AwsElasticachePrototype
     attr_accessor :elasticache
     attr_accessor :redis_write
     attr_accessor :redis_read
+    attr_accessor :redis_read_endpoints
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
